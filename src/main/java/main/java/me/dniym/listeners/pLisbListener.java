@@ -41,11 +41,6 @@ public class pLisbListener {
                     //new PacketAdapter(plugin, PacketType.Play.Client.SET_CREATIVE_SLOT) {
                         @Override
                         public void onPacketReceiving(PacketEvent event) {
-                            if (!Protections.BlockBadItemsFromCreativeTab.isEnabled() || event
-                                    .getPlayer()
-                                    .hasPermission("illegalstack.admin")) {
-                                return;
-                            }
                             try {
                                 ItemStack stack = event.getPacket().getItemModifier().readSafely(0);
                                 if (stack != null && stack.hasItemMeta()) {
