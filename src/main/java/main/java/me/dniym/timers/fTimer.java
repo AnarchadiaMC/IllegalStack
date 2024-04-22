@@ -143,7 +143,7 @@ public class fTimer implements Runnable {
             for (World w : plugin.getServer().getWorlds()) {
                 if (w.getName().toLowerCase().contains("nether") || w.getEnvironment() == Environment.NETHER) {
                     for (Player p : w.getPlayers()) {
-                        if (p.isOp() || p.hasPermission("illegalstack.notify")) {
+                        if (p.hasPermission("illegalstack.notify")) {
                             continue;
                         } else if (p.getLocation().getY() >= Protections.NetherYLevel.getIntValue()) {
                             Scheduler.executeOrScheduleSync(plugin,
@@ -304,7 +304,7 @@ public class fTimer implements Runnable {
                             NBTStuff.checkForNegativeDurability(is, p);
                         }
 
-                        if (is != null && !p.isOp()) {
+                        if (is != null) {
 
                             if (Protections.RemoveItemTypes.isWhitelisted(is)) {
                                 if (IllegalStack.getLbBlock() != null && IllegalStack.getLbBlock() == is.getType() && p.hasPermission(

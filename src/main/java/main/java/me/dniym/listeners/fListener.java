@@ -589,9 +589,7 @@ public class fListener implements Listener {
         }
 
 
-        if ((Protections.BlockBuildingAboveNether.isEnabled() || Protections.BlockPlayersAboveNether.isEnabled()) && !e
-                .getPlayer()
-                .isOp()) {
+        if ((Protections.BlockBuildingAboveNether.isEnabled() || Protections.BlockPlayersAboveNether.isEnabled())) {
             if (Protections.ExcludeNetherWorldFromHeightCheck.getTxtSet().contains(e.getPlayer().getWorld().getName())) {
                 return;
             }
@@ -1225,17 +1223,15 @@ public class fListener implements Listener {
                 }
 
                 if (Protections.RemoveOverstackedItems.isEnabled()) {
-                    if (!p.isOp()) {
-                        if (Protections.RemoveItemTypes.isWhitelisted(is)) {
-                            if (Protections.RemoveItemTypes.notifyOnly()) {
-                                getLog().notify(
-                                        Protections.RemoveItemTypes,
-                                        " Triggered by: " + e.getPlayer().getName() + " with item: " + is.getType().name()
-                                );
-                            } else {
-                                getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
-                                e.getInventory().remove(is);
-                            }
+                    if (Protections.RemoveItemTypes.isWhitelisted(is)) {
+                        if (Protections.RemoveItemTypes.notifyOnly()) {
+                            getLog().notify(
+                                    Protections.RemoveItemTypes,
+                                    " Triggered by: " + e.getPlayer().getName() + " with item: " + is.getType().name()
+                            );
+                        } else {
+                            getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
+                            e.getInventory().remove(is);
                         }
                     }
 
@@ -2741,17 +2737,15 @@ public class fListener implements Listener {
             }
 
             if (Protections.RemoveOverstackedItems.isEnabled()) {
-                if (!p.isOp()) {
-                    if (Protections.RemoveItemTypes.isWhitelisted(is)) {
-                        if (Protections.RemoveItemTypes.notifyOnly()) {
-                            getLog().notify(
-                                    Protections.RemoveItemTypes,
-                                    " Triggered by: " + e.getPlayer().getName() + " with item: " + is.getType().name()
-                            );
-                        } else {
-                            getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
-                            p.getInventory().remove(is);
-                        }
+                if (Protections.RemoveItemTypes.isWhitelisted(is)) {
+                    if (Protections.RemoveItemTypes.notifyOnly()) {
+                        getLog().notify(
+                                Protections.RemoveItemTypes,
+                                " Triggered by: " + e.getPlayer().getName() + " with item: " + is.getType().name()
+                        );
+                    } else {
+                        getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
+                        p.getInventory().remove(is);
                     }
                 }
                 if (Protections.RemoveOverstackedItems.isEnabled()) {
@@ -3185,17 +3179,15 @@ public class fListener implements Listener {
                         if (is2 == null) {
                             continue;
                         }
-                        if (!p.isOp()) {
-                            if (Protections.RemoveItemTypes.isWhitelisted(is)) {
-                                if (Protections.RemoveItemTypes.notifyOnly()) {
-                                    getLog().notify(
-                                            Protections.RemoveItemTypes,
-                                            " Triggered by: " + p.getName() + " with item: " + is.getType().name()
-                                    );
-                                } else {
-                                    getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
-                                    p.getInventory().remove(is);
-                                }
+                        if (Protections.RemoveItemTypes.isWhitelisted(is)) {
+                            if (Protections.RemoveItemTypes.notifyOnly()) {
+                                getLog().notify(
+                                        Protections.RemoveItemTypes,
+                                        " Triggered by: " + p.getName() + " with item: " + is.getType().name()
+                                );
+                            } else {
+                                getLog().append2(Msg.ItemTypeRemovedPlayer.getValue(p, is));
+                                p.getInventory().remove(is);
                             }
                         }
                         if (is2 != null && is2.getAmount() > is2.getMaxStackSize()) {
@@ -3567,7 +3559,7 @@ public class fListener implements Listener {
             }
             Location l = e.getTo();
             if (l.getY() >= Protections.NetherYLevel.getIntValue()) {
-                if (!e.getPlayer().isOp() && (l.getWorld().getName().toLowerCase().contains("nether") || l
+                if ((l.getWorld().getName().toLowerCase().contains("nether") || l
                         .getWorld()
                         .getEnvironment() == Environment.NETHER)) {
                     e.setCancelled(true);
@@ -3626,12 +3618,7 @@ public class fListener implements Listener {
         if (e.getFrom().getBlockX() != e.getTo().getBlockX() || 
         		e.getFrom().getBlockY() != e.getTo().getBlockY() || 
         		e.getFrom().getBlockZ() != e.getTo().getBlockZ()) {
-        	
-        
-                if(e.getPlayer().isOp()) 
-                	return;
-               
-                
+
                
             if (Protections.KillPlayersBelowNether.isEnabled() &&
                     (e.getPlayer().isFlying() || (IllegalStack.hasElytra() && e.getPlayer().isGliding()))) {
@@ -3756,9 +3743,7 @@ public class fListener implements Listener {
                 }
             }
         }
-        if ((Protections.BlockBuildingAboveNether.isEnabled() || Protections.BlockPlayersAboveNether.isEnabled()) && !e
-                .getPlayer()
-                .isOp()) {
+        if ((Protections.BlockBuildingAboveNether.isEnabled() || Protections.BlockPlayersAboveNether.isEnabled())) {
             if (Protections.ExcludeNetherWorldFromHeightCheck.getTxtSet().contains(e.getPlayer().getWorld().getName())) {
                 return;
             }

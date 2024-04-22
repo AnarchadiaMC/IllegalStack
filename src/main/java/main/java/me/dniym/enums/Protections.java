@@ -2332,7 +2332,7 @@ public enum Protections {
         }
 
         if (this == Protections.AllowStack && player != null) {
-            if (player.hasPermission("illegalstack.overstack") || player.isOp()) {
+            if (player.hasPermission("illegalstack.overstack")) {
                 for (String s : Protections.AllowStackForGroup.getTxtSet()) {
                     if (s.contains("*")) {
                         return true;
