@@ -55,6 +55,7 @@ public class IllegalEnchantCheck {
     }
 
     public static boolean isIllegallyEnchanted(ItemStack itemStack, Object obj, boolean silent) {
+        boolean isIllegal = false;
 
         if (itemStack == null) {
             return false;
@@ -121,6 +122,7 @@ public class IllegalEnchantCheck {
                         }
                         replace.add(enchantment);
                     }
+                    isIllegal = true;
                 } else {
                     if (!enchantment.canEnchantItem(itemStack)) {
                         if (SlimefunCompat.isValid(itemStack, enchantment)) {
@@ -128,6 +130,7 @@ public class IllegalEnchantCheck {
                         }
 
                         replace.add(enchantment);
+                        isIllegal = true;
                         if (!silent) {
                             fListener.getLog().append2(Msg.IllegalEnchantType.getValue(obj, itemStack, enchantment));
                         }
@@ -143,7 +146,9 @@ public class IllegalEnchantCheck {
             }
         }
 
-        return false;
+        return isIllegal;
     }
+
+
 
 }
